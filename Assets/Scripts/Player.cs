@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] GameObject laserPrefab;
 	[SerializeField] float projectileSpeed = 10f;
 	[SerializeField] float projectileFiringPeriod = 0.1f;
+	[SerializeField] float health = 1000f;
 
 	Coroutine firingCoroutine;
 
@@ -76,5 +77,25 @@ public class Player : MonoBehaviour {
 		var newYPos = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
 
 		transform.position = new Vector3(newXPos, newYPos, transform.position.z);
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		DamageDealer damageDealer = other.GetComponent<DamageDealer>();
+		ProcessHit(damageDealer);
+	}
+
+	private void ProcessHit(DamageDealer damageDealer)
+	{
+		if (damageDealer != null && damageDealer.GetDamageIsForEnemy() == false)
+		{
+			health -= damageDealer.GetDamage();
+			damageDealer.Hit();
+		}
+
+		if (health <= 0)
+		{
+			Destroy(gameObject);
+		}
 	}
 }
