@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4145054020274264}
   - component: {fileID: 212140014442189736}
   - component: {fileID: 114490868855097524}
-  - component: {fileID: 58394092135541140}
-  m_Layer: 0
+  - component: {fileID: 60784872465619024}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,14 +36,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1034313810834118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.93, z: -1}
+  m_LocalPosition: {x: 0.025, y: -7.949, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58394092135541140
-CircleCollider2D:
+--- !u!60 &60784872465619024
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -55,8 +55,36 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.495
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.99, y: 0.75}
+    newSize: {x: 0.99, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.506919, y: 0.083283424}
+      - {x: 0.35545334, y: -0.017169952}
+      - {x: 0.119040534, y: 0.11879015}
+      - {x: 0.07230677, y: 0.37741137}
+      - {x: -0.080887236, y: 0.37258863}
+      - {x: -0.12414173, y: 0.122020245}
+      - {x: -0.35141283, y: -0.018433094}
+      - {x: -0.40455812, y: 0.011440277}
+      - {x: -0.49499997, y: 0.06818199}
+      - {x: -0.46818218, y: -0.24202108}
+      - {x: -0.42749208, y: -0.25071096}
+      - {x: -0.40712145, y: -0.21646643}
+      - {x: -0.13606074, y: -0.26818132}
+      - {x: -0.07089028, y: -0.3757758}
+      - {x: 0.07186614, y: -0.37797976}
+      - {x: 0.12883805, y: -0.27666807}
+      - {x: 0.41292685, y: -0.20752668}
+      - {x: 0.45499998, y: -0.265}
+      - {x: 0.45626315, y: -0.24904013}
 --- !u!114 &114490868855097524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,9 +99,9 @@ MonoBehaviour:
   speed: 10
   laserPrefab: {fileID: 1979889930052452, guid: 26e4126a32652d34ba483ab09e67913f,
     type: 2}
+  health: 1000
   projectileSpeed: 20
   projectileFiringPeriod: 0.1
-  health: 1000
 --- !u!212 &212140014442189736
 SpriteRenderer:
   m_ObjectHideFlags: 1

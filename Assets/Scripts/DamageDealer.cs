@@ -5,16 +5,10 @@ using UnityEngine;
 public class DamageDealer : MonoBehaviour {
 
 	[SerializeField] int damage = 100;
-	[SerializeField] bool toEnemy = true;
 
 	public int GetDamage()
 	{
 		return damage;
-	}
-
-	public bool GetDamageIsForEnemy()
-	{
-		return toEnemy;
 	}
 
 	public void Hit()

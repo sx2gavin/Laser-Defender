@@ -6,11 +6,15 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	// configuration parameters
+
+	[Header("Player")]
 	[SerializeField] float speed;
 	[SerializeField] GameObject laserPrefab;
+	[SerializeField] float health = 1000f;
+
+	[Header("Projectile")]
 	[SerializeField] float projectileSpeed = 10f;
 	[SerializeField] float projectileFiringPeriod = 0.1f;
-	[SerializeField] float health = 1000f;
 
 	Coroutine firingCoroutine;
 
@@ -87,7 +91,7 @@ public class Player : MonoBehaviour {
 
 	private void ProcessHit(DamageDealer damageDealer)
 	{
-		if (damageDealer != null && damageDealer.GetDamageIsForEnemy() == false)
+		if (damageDealer != null)
 		{
 			health -= damageDealer.GetDamage();
 			damageDealer.Hit();
