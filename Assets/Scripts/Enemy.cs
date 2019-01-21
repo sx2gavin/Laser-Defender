@@ -12,6 +12,11 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] GameObject laserPrefab;
 	[SerializeField] float projectileSpeed = 1f;
 
+	[SerializeField] [Range(0, 1)] float deathSoundVolume = 0.7f;
+	[SerializeField] AudioClip deathSound;
+	[SerializeField] [Range(0, 1)] float fireLaserVolume = 0.25f;
+	[SerializeField] AudioClip fireLaserSound;
+
 	// Use this for initialization
 	void Start () {
 		shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
@@ -35,6 +40,7 @@ public class Enemy : MonoBehaviour {
 	private void Fire()
 	{
 		GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+		AudioSource.PlayClipAtPoint(fireLaserSound, transform.position, fireLaserVolume);
 		laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
 	}
 
@@ -54,7 +60,13 @@ public class Enemy : MonoBehaviour {
 
 		if (health <= 0)
 		{
-			Destroy(gameObject);
+			Die();
 		}
+	}
+
+	private void Die()
+	{
+		Destroy(gameObject);
+		AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
 	}
 }
