@@ -114,5 +114,10 @@ public class Player : MonoBehaviour {
 	{
 		Destroy(gameObject);
 		AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
+		SceneLoader sceneLoader = FindObjectOfType<SceneLoader>();
+		if (sceneLoader != null)
+		{
+			sceneLoader.LoadGameOverScene();
+		}
 	}
 }
