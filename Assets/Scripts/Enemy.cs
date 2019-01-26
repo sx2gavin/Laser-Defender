@@ -5,21 +5,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	[SerializeField] float health = 200;
-	[SerializeField] float shotCounter;
+	[Header("Attributes")]
+	[SerializeField] float health = 200f;
+	[SerializeField] int pointsUponDeath = 100;
+	float shotCounter;
 	[SerializeField] float minTimeBetweenShots = 0.2f;
 	[SerializeField] float maxTimeBetweenShots = 3f;
 	[SerializeField] GameObject laserPrefab;
 	[SerializeField] float projectileSpeed = 1f;
 
+	[Header("Sounds")]
 	[SerializeField] [Range(0, 1)] float deathSoundVolume = 0.7f;
 	[SerializeField] AudioClip deathSound;
 	[SerializeField] [Range(0, 1)] float fireLaserVolume = 0.25f;
 	[SerializeField] AudioClip fireLaserSound;
 
+	// Cached objects
+	GameSession gameSession;
+
 	// Use this for initialization
 	void Start () {
 		shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+		gameSession = FindObjectOfType<GameSession>();
 	}
 	
 	// Update is called once per frame
@@ -58,7 +65,7 @@ public class Enemy : MonoBehaviour {
 			damageDealer.Hit();
 		}
 
-		if (health <= 0)
+		if (health <= 0) 
 		{
 			Die();
 		}
@@ -66,6 +73,10 @@ public class Enemy : MonoBehaviour {
 
 	private void Die()
 	{
+		if (gameSession != null)
+		{
+			gameSession.AddScore(pointsUponDeath);
+		}
 		Destroy(gameObject);
 		AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
 	}

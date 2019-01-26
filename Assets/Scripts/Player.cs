@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	[Header("Player")]
 	[SerializeField] float speed;
 	[SerializeField] GameObject laserPrefab;
-	[SerializeField] float health = 1000f;
+	[SerializeField] int health = 1000;
 	[SerializeField] [Range(0, 1)] float deathSoundVolume = 1f;
 	[SerializeField] AudioClip deathSound;
 
@@ -30,6 +30,11 @@ public class Player : MonoBehaviour {
 	float yMax;
 
 	SpriteRenderer spriteRenderer;
+
+	public int GetHealth()
+	{
+		return health;
+	}
 
 	// Use this for initialization
 	void Start ()

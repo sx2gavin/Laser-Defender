@@ -10,6 +10,12 @@ public class SceneLoader : MonoBehaviour {
 	public void LoadGameScene()
 	{
 		SceneManager.LoadScene("Game Scene");
+
+		GameSession gameSession = FindObjectOfType<GameSession>();
+		if (gameSession != null)
+		{
+			gameSession.ResetGameSession();
+		}
 	}
 
 	public void LoadGameOverScene()
@@ -21,6 +27,7 @@ public class SceneLoader : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(delayInSeconds);
 		SceneManager.LoadScene("Game Over");
+
 	}
 
 	public void LoadStartMenuScene()
